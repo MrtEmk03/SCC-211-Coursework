@@ -26,6 +26,6 @@ public class InventoryMain {
                 // TODO: handle exception
             }
         }
-        System.out.print(inv.GetSizeOfInventory());
+        System.out.print("Final inventory size = "+inventory.SizeOfInventory() + "\n");
     }
 }

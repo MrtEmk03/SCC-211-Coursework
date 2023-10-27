@@ -10,7 +10,7 @@ public class inventory {
         sizeOfInventory--;
     }
 
-    public int GetSizeOfInventory(){
+    public static int SizeOfInventory(){
         return sizeOfInventory;
     }
 }
