@@ -7,25 +7,37 @@ public class InventoryMain {
         add = Integer.parseInt(args[0]); // converts string input from command line to int
         remove = Integer.parseInt(args[1]);
 
-        //System.out.print(remove); // test to check if correct values assigned.
+        Thread[] arrayOfAddThreads = new Thread[add];
+        Thread[] arrayOfRemoveThreads = new Thread[remove];
+        // System.out.print(remove); // test to check if correct values assigned.
         for (int i = 0; i < add; i++) {
             add a = new add();
             a.start();
-            try {
-                a.join(); // waits until death
-            } catch (Exception e) {
-                // TODO: handle exception   // is it bad that i put nothing here?????
-            }
+            arrayOfAddThreads[i] = a;
         }
         for (int x = 0; x < remove; x++) {
             remove r = new remove();
             r.start();
-            try {
-                r.join();
-            } catch (Exception e) {
-                // TODO: handle exception
-            }
+            arrayOfRemoveThreads[x] = r;
         }
-        System.out.print("Final inventory size = "+inventory.SizeOfInventory() + "\n");
+
+
+        for (Thread thread : arrayOfAddThreads) {
+            try {
+            thread.join(); // waits until death
+        } catch (Exception e) {
+            System.out.println("error with a join");
+        }
+        }
+        
+        for (Thread thread : arrayOfRemoveThreads) {
+            try {
+            thread.join(); // waits until death
+        } catch (Exception e) {
+            System.out.println("error with r join");
+        }
+        }
+
+        System.out.print("Final inventory size = " + inventory.SizeOfInventory() + "\n");
     }
 }
